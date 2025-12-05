@@ -1,0 +1,28 @@
+name = "flux-2-ai-generator"
+main = "./build/server/index.js"
+compatibility_date = "2025-12-06"
+account_id = "" # 請填入您的 Cloudflare Account ID
+
+[observability]
+enabled = true
+
+# Workers AI Binding
+[ai]
+binding = "AI"
+
+# KV Namespace - 存儲生成歷史
+[[kv_namespaces]]
+binding = "IMAGE_HISTORY"
+id = "ce668656d4ac49bfadd83f6a572e3579" # 請填入 KV Namespace ID
+preview_id = ""
+
+# R2 Bucket - 圖片持久化存儲
+[[r2_buckets]]
+binding = "IMAGE_STORAGE"
+bucket_name = "flux-generated-images"
+
+[build]
+command = "npm run build"
+
+[site]
+bucket = "./build/client"
